@@ -5,3 +5,12 @@ terraform {
   # The latest version of Terragrunt (v0.19.0 and above) requires Terraform 0.12.0 or above.
   required_version = ">= 0.12.0"
 }
+
+resource "aws_instance" "web" {
+  ami = "ami-1fc01067"
+  instance_type = "t2.micro"
+  tags {
+    Name = "HelloWorld"
+  }
+  security_groups = [ "${aws_security_group.my_security_group.id}" ]
+}
