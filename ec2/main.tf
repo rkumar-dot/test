@@ -12,5 +12,5 @@ resource "aws_instance" "web" {
   tags {
     Name = "HelloWorld"
   }
-  security_groups = [ "${aws_security_group.my_security_group.id}" ]
+  
 }
