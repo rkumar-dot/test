@@ -16,6 +16,7 @@ variable "environment" {
 variable "description" {
   type        = "string"
   description = "The description of these resources."
+  default     = "OWASP Top 10 rules for tsiwaf"
 }
 
 variable "target_scope" {
