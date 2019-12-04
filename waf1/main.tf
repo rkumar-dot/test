@@ -22,7 +22,7 @@ resource "random_id" "this" {
 resource "aws_wafregional_size_constraint_set" "owasp_07_size_restriction_set" {
   count = "${lower(var.target_scope) == "regional" ? "1" : "0"}"
 
-  name = "${lower(var.service_name)}-owasp-07-size-restrictions-${random_id.0.hex}"
+  name = "${lower(var.service_name)}-owasp-07-size-restrictions-${random_id.this.0.hex}"
 
   size_constraints {
     text_transformation = "NONE"
