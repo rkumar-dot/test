@@ -1,16 +1,19 @@
 variable "product_domain" {
   type        = "string"
   description = "The name of the product domain these resources belong to."
+  default = "tsi"
 }
 
 variable "service_name" {
   type        = "string"
   description = "The name of the service these resources belong to."
+  default = "tsiwaf"
 }
 
 variable "environment" {
   type        = "string"
   description = "The environment of these resources belong to."
+  default = "staging"
 }
 
 variable "description" {
@@ -22,6 +25,7 @@ variable "description" {
 variable "target_scope" {
   type        = "string"
   description = "Valid values are `global` and `regional`. If `global`, means resources created will be for global targets such as Amazon CloudFront distribution. For regional targets like ALBs and API Gateway stages, set to `regional`"
+  default = "global"
 }
 
 variable "create_rule_group" {
