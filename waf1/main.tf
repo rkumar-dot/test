@@ -65,3 +65,18 @@ resource "aws_wafregional_size_constraint_set" "owasp_07_size_restriction_set" {
     }
   }
 }
+
+resource "aws_wafregional_rule" "owasp_07_size_restriction_rule" {
+  depends_on = ["aws_wafregional_size_constraint_set.owasp_07_size_restriction_set"]
+
+  count = "${lower(var.target_scope) == "regional" ? "1" : "0"}"
+
+  name        = "${lower(var.service_name)}-owasp-07-restrict-sizes-${random_id.this.hex}"
+  metric_name = "${lower(var.service_name)}OWASP07RestrictSizes${random_id.this.hex}"
+
+  predicate {
+    data_id = "${aws_wafregional_size_constraint_set.owasp_07_size_restriction_set.id}"
+    negated = "false"
+    type    = "SizeConstraint"
+  }
+}
